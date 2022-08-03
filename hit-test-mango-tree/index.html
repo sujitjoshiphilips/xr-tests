@@ -117,18 +117,18 @@
             }
 
             function scaleUp() {
-                sx = sx+0.01;
-                sy = sy+0.01;
-                sz = sz+0.01;
+                sx = sx*1.2;
+                sy = sy*1.2;
+                sz = sz*1.2;
                 
                 let scale = String(sx) + " " + String(sz) + " " + String(sy);
                 document.getElementById('chairModel').setAttribute('scale', scale);
             }
 
             function scaleDown() {
-                sx = sx-0.01;
-                sy = sy-0.01;
-                sz = sz-0.01;
+                sx = sx/1.2;
+                sy = sy/1.2;
+                sz = sz/1.2;
 
                 let a = sx*sy*sz;
 
