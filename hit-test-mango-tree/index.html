@@ -68,8 +68,8 @@
         <!-- ar-shadow-helper="target:#my-objects;light:#dirlight;" height="200" width="200" position="-0.1 0.5 -2"></a-entity> -->
 
         <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
-        <a-entity hide-on-hit-test-start shadow id="my-objects" scale="1 1 1" position="0.2 -0.2 -0.4">
-            <a-entity gltf-model="#trunkTree" scale="0.5 0.5 0.5" position="0 -1.6 -10">
+        <a-entity hide-on-hit-test-start shadow id="my-objects" scale="1 1 1" position="0 0 0">
+            <a-entity id="chairModel" gltf-model="#trunkTree" scale="0.5 0.5 0.5" position="0 -1.6 -10">
                 <a-entity gltf-model="#leavesTree" position="0 0 0" target="_blank"> </a-entity>
                 <a-entity gltf-model="#mangoesTree" position="0 0 0"> </a-entity>
               </a-entity>
@@ -81,6 +81,8 @@
         <button onclick="rotateChairRight()">Rotate Chair right 🔄</button>
         <button onclick="scaleUp()">Scale Up</button>
         <button onclick="scaleDown()">Scale Down</button>
+        <button onclick="moveDown()">Move Down</button>
+        <button onclick="moveUp()">Move Up</button>
         <script>
             let rx = 0;
             let ry = 0;
@@ -89,6 +91,10 @@
             let sx = 0;
             let sy = 0;
             let sz = 0;
+
+            let pz = 0;
+            let px = 0.2;
+            let py = -0.2;
 
             function rotateChairRight() {
                 rz = rz+30;
@@ -132,6 +138,20 @@
                 
                 let scale = String(sx) + " " + String(sz) + " " + String(sy);
                 document.getElementById('chairModel').setAttribute('scale', scale);
+            }
+
+            function moveUp() {
+                pz = pz+2;
+                
+                let position = String(px) + " " + String(pz) + " " + String(py);
+                document.getElementById('chairModel').setAttribute('position', position);
+            }
+
+            function moveDown() {
+                pz = pz-2;
+                
+                let position = String(px) + " " + String(pz) + " " + String(py);
+                document.getElementById('chairModel').setAttribute('position', position);
             }
         </script>
         <div id="dom-overlay-message">Enter AR to start.</div>
