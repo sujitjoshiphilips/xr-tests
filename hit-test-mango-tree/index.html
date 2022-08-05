@@ -52,6 +52,7 @@
             <a-asset-item id="mangoesTree" src="./mangoesonly2.glb"> </a-asset-item>
             <a-asset-item id="leavesTree" src="./leavesonly.gltf"> </a-asset-item>
             <a-asset-item id="trunkTree" src="./trunkonly.gltf"> </a-asset-item>
+            <a-asset-item id="text" src="./text-1.glb"> </a-asset-item>
         </a-assets>
         <a-camera position="0 0.4 1"></a-camera>
 
@@ -70,13 +71,16 @@
         <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
         <a-entity  hide-on-hit-test-start shadow id="my-objects" scale="0.1 0.1 0.1" position="0 -8 0">
             
-                <a-box height="0.5" width="10" depth="10" color="white"></a-box>
-                <a-entity gltf-model="#trunkTree" scale="0.6 0.6 0.6" position="0 0 0">
-                    <a-entity gltf-model="#leavesTree" position="0 0 0"> </a-entity>
-                    <a-entity gltf-model="#mangoesTree" position="0 0 0"> </a-entity>
-                </a-entity>
-            
+                <!-- <a-box height="0.5" width="10" depth="10" color="white"></a-box> -->
+                <!-- <a-entity gltf-model="#trunkTree" scale="0.6 0.6 0.6" position="0 0 0"> -->
+                    <!-- <a-entity gltf-model="#leavesTree" position="0 0 0"> </a-entity> -->
+                    <!-- <a-entity gltf-model="#mangoesTree" position="0 0 0"> </a-entity> -->
+                <!-- </a-entity> -->
+
+            <a-entity gltf-model="#text" scale="1 1 1" position="0 0 0"></a-entity>
         </a-entity>
+
+        <a-entity gltf-model="#text" scale="1 1 1" position="0 0 0"></a-entity>
             
     </a-scene>
 
