@@ -49,38 +49,21 @@
         gltf-model="dracoDecoderPath: https://cdn.jsdelivr.net/npm/three@0.129.0/examples/js/libs/draco/gltf/;"
         ar-cursor raycaster="objects: #my-objects *">
         <a-assets>
-            <a-asset-item id="mangoesTree" src="./mangoesonly2.glb"> </a-asset-item>
-            <a-asset-item id="leavesTree" src="./leavesonly.gltf"> </a-asset-item>
-            <a-asset-item id="trunkTree" src="./trunkonly.gltf"> </a-asset-item>
-            <a-asset-item id="text" src="./text-1.glb"> </a-asset-item>
+            <a-asset-item id="icons" src="./file-champs/icons-1.glb"> </a-asset-item>
         </a-assets>
         <a-camera position="0 0.4 1"></a-camera>
 
         <a-light id="dirlight" auto-shadow-cam intensity="0.01" light="castShadow:true;type:directional"
             position="10 10 -10"></a-light>
-        <!-- <a-light hide-on-enter-ar intensity="0.01" light="type:hemisphere;color:yellow;groundColor:blue;" -->
-            <!-- position="10 10 10"></a-light> -->
+     
 
         <a-entity hide-on-enter-ar environment="lighting:none;shadow:true;"></a-entity>
 
-        <!-- This plane is only visible in AR and follows the given target to provide it with shadows.-->
-        <!-- <a-entity material="shader:shadow; depthWrite:false; opacity:0.9;" visible="false" -->
-        <!-- geometry="primitive:shadow-plane;" shadow="cast:false;receive:true;" -->
-        <!-- ar-shadow-helper="target:#my-objects;light:#dirlight;" height="200" width="200" position="-0.1 0.5 -2"></a-entity> -->
-
         <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
         <a-entity  hide-on-hit-test-start shadow id="my-objects" scale="0.1 0.1 0.1" position="0 -8 0">
-            
-                <!-- <a-box height="0.5" width="10" depth="10" color="white"></a-box> -->
-                <!-- <a-entity gltf-model="#trunkTree" scale="0.6 0.6 0.6" position="0 0 0"> -->
-                    <!-- <a-entity gltf-model="#leavesTree" position="0 0 0"> </a-entity> -->
-                    <!-- <a-entity gltf-model="#mangoesTree" position="0 0 0"> </a-entity> -->
-                <!-- </a-entity> -->
-
-            <a-entity gltf-model="#text" scale="1 1 1" position="0 0 0"></a-entity>
+            <a-entity id="chairModel" gltf-model="#icons" scale="1 1 1" position="0 0 0"></a-entity>
         </a-entity>
 
-        <!-- <a-entity gltf-model="#text" scale="1 1 1" position="0 0 0"></a-entity> -->
             
     </a-scene>
 
