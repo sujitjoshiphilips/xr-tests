@@ -26,45 +26,70 @@
             bottom: 0;
             right: 0;
             padding: 1em;
-            background: #33333355;
+            background: #3b3b3b40;
             border-top: 5px solid #ffffff55;
             color: white;
+
+        }
+
+        #dom-overlay {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            padding: 1em;
+            background: #111f214a;
+            color: white;
+            height: fit-content;
         }
 
         .a-dom-overlay button {
             padding: 1em;
             appearance: none;
-            background: #00000055;
+            background: #00000096;
             border: 3px solid white;
             border-radius: 1em;
             margin: 1em 1em 0 0;
             color: white;
         }
-        
+
+        #xrascene {
+            position: absolute;
+            top: 100px;
+        }
     </style>
 </head>
 
 <body>
-    <a-scene webxr="overlayElement:#dom-overlay;" background="color:skyblue;" reflection="directionalLight:#dirlight;"
-        ar-hit-test="target:#my-objects;type:footprint;footprintDepth:0.2;" shadow="type: pcfsoft"
+    <a-scene id="xrascene" webxr="overlayElement:#dom-overlay;" background="color:skyblue;"
+        reflection="directionalLight:#dirlight;" ar-hit-test="target:#my-objects;type:footprint;footprintDepth:0.2;"
+        shadow="type: pcfsoft"
         gltf-model="dracoDecoderPath: https://cdn.jsdelivr.net/npm/three@0.129.0/examples/js/libs/draco/gltf/;"
         ar-cursor raycaster="objects: #my-objects *">
         <a-assets>
-            <a-asset-item id="text" src="./a0-b-b.glb"> </a-asset-item>
+            <a-asset-item id="text" src="./a100-b-r.glb"> </a-asset-item>
+            <a-asset-item id="text2" src="../hit-test-mango-tree/mangoesonly2.glb"> </a-asset-item>
         </a-assets>
         <a-camera position="0 0.4 1"></a-camera>
 
         <a-light id="dirlight" auto-shadow-cam intensity="0.01" light="castShadow:true;type:directional"
             position="10 10 -10"></a-light>
-     
+
 
         <a-entity hide-on-enter-ar environment="lighting:none;shadow:true;"></a-entity>
 
         <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
-            <a-entity id="text-block" gltf-model="#icons" scale="100 100 100" position="0 0 0"></a-entity>
-      
 
-            
+        <a-entity>
+
+            <!-- <a-entity id="text-block" gltf-model="#text" scale="0.5 0.5 0.5"  position="0 3 -10" rotation="0 0 0"> </a-entity> -->
+            <a-entity id="gltf-inline" gltf-model="url(./a100-b-r.glb)" position="0 10 -15" rotation="0 0 0"></a-entity>
+            <!-- <a-box color="tomato" position="0 20 -20" rotation="0 90 0" depth="2" height="4" width="0.5"></a-box> -->
+        </a-entity>
+
+
+
+
     </a-scene>
 
     <div id="dom-overlay">
@@ -74,8 +99,8 @@
         <button onclick="incHead()">⬆️ Heading Weight</button>
         <button onclick="redBod()">⬇️ Body Weight</button>
         <button onclick="incBod()">⬆️ Body Weight</button>
-        
-        
+
+
         <script>
             let rx = 0;
             let ry = 0;
@@ -89,60 +114,60 @@
             let px = 0;
             let py = 0;
 
-            
+
             function rotateChairRight() {
-                rz = rz+30;
-                if (rz>=360) {
-                    rz=0;
+                rz = rz + 30;
+                if (rz >= 360) {
+                    rz = 0;
                 }
                 let rotation = String(rx) + " " + String(rz) + " " + String(ry);
                 document.getElementById('chairModel').setAttribute('rotation', rotation);
             }
 
             function rotateChairLeft() {
-                rz = rz-30;
-                if (rz<=0) {
-                    rz=360;
+                rz = rz - 30;
+                if (rz <= 0) {
+                    rz = 360;
                 }
                 let rotation = String(rx) + " " + String(rz) + " " + String(ry);
                 document.getElementById('chairModel').setAttribute('rotation', rotation);
             }
 
             function scaleUp() {
-                sx = sx*1.2;
-                sy = sy*1.2;
-                sz = sz*1.2;
-                
+                sx = sx * 1.2;
+                sy = sy * 1.2;
+                sz = sz * 1.2;
+
                 let scale = String(sx) + " " + String(sz) + " " + String(sy);
                 document.getElementById('chairModel').setAttribute('scale', scale);
             }
 
             function scaleDown() {
-                sx = sx/1.2;
-                sy = sy/1.2;
-                sz = sz/1.2;
+                sx = sx / 1.2;
+                sy = sy / 1.2;
+                sz = sz / 1.2;
 
-                let a = sx*sy*sz;
+                let a = sx * sy * sz;
 
                 let scale = String(sx) + " " + String(sz) + " " + String(sy);
                 document.getElementById('chairModel').setAttribute('scale', scale);
             }
 
             function moveUp() {
-                pz = pz+2;
-                
+                pz = pz + 2;
+
                 let position = String(px) + " " + String(pz) + " " + String(py);
                 document.getElementById('chairModel').setAttribute('position', position);
             }
 
             function moveDown() {
-                pz = pz-2;
-                
+                pz = pz - 2;
+
                 let position = String(px) + " " + String(pz) + " " + String(py);
                 document.getElementById('chairModel').setAttribute('position', position);
             }
         </script>
-        <div id="dom-overlay-message">Enter AR to start.</div>
+        <!-- <div id="dom-overlay-message">Enter AR to start.</div> -->
     </div>
 </body>
 
