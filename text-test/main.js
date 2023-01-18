@@ -117,7 +117,7 @@ function incScale() {
     sz = sz * 1.2;
 
     let scale = String(sx) + " " + String(sz) + " " + String(sy);
-    document.getElementById('my-objects').setAttribute('scale', scale);
+    document.getElementById('targetEntity').setAttribute('scale', scale);
 }
 
 function redScale() {
@@ -128,5 +128,5 @@ function redScale() {
     let a = sx * sy * sz;
 
     let scale = String(sx) + " " + String(sz) + " " + String(sy);
-    document.getElementById('my-objects').setAttribute('scale', scale);
+    document.getElementById('targetEntity').setAttribute('scale', scale);
 }
