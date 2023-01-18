@@ -2,6 +2,9 @@ var currentAlpha = "100";
 let currentHeading = "b";
 let currentBody = "r";
 let modelID = "gltf-inline";
+let sx = 0.1;
+let sy = 0.1;
+let sz = 0.1;
 
 window.onload = function onloadFunction() {
     console.log("onload" + currentAlpha);
