@@ -110,3 +110,23 @@ function redBod() {
     document.getElementById(modelID).setAttribute('gltf-model', srcLink);
     console.log(currentAlpha + '-' + currentHeading + '-' + currentBody);
 }
+
+function incScale() {
+    sx = sx * 1.2;
+    sy = sy * 1.2;
+    sz = sz * 1.2;
+
+    let scale = String(sx) + " " + String(sz) + " " + String(sy);
+    document.getElementById('my-objects').setAttribute('scale', scale);
+}
+
+function redScale() {
+    sx = sx / 1.2;
+    sy = sy / 1.2;
+    sz = sz / 1.2;
+
+    let a = sx * sy * sz;
+
+    let scale = String(sx) + " " + String(sz) + " " + String(sy);
+    document.getElementById('my-objects').setAttribute('scale', scale);
+}
