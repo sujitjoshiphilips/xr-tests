@@ -27,7 +27,6 @@
             right: 0;
             padding: 1em;
             background: #3b3b3b40;
-            border-top: 5px solid #ffffff55;
             color: white;
 
         }
@@ -52,18 +51,12 @@
             margin: 1em 1em 0 0;
             color: white;
         }
-
-        #xrascene {
-            position: absolute;
-            top: 100px;
-        }
     </style>
 </head>
 
 <body>
-    <a-scene id="xrascene" webxr="overlayElement:#dom-overlay;" background="color:skyblue;"
-        reflection="directionalLight:#dirlight;" ar-hit-test="target:#my-objects;type:footprint;footprintDepth:0.2;"
-        shadow="type: pcfsoft"
+    <a-scene webxr="overlayElement:#dom-overlay;" background="color:skyblue;" reflection="directionalLight:#dirlight;"
+        ar-hit-test="target:#my-objects;type:footprint;footprintDepth:0.2;" shadow="type: pcfsoft"
         gltf-model="dracoDecoderPath: https://cdn.jsdelivr.net/npm/three@0.129.0/examples/js/libs/draco/gltf/;"
         ar-cursor raycaster="objects: #my-objects *">
         <a-assets>
@@ -79,11 +72,13 @@
         <a-entity hide-on-enter-ar environment="lighting:none;shadow:true;"></a-entity>
 
         <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
-
-        <a-entity position="0 3 -15">
-            <!-- <a-entity id="text-block" gltf-model="#text" scale="0.5 0.5 0.5"  position="0 3 -10" rotation="0 0 0"> </a-entity> -->
-            <a-entity id="gltf-inline" gltf-model="url(./a100-b-r.glb)" position="0 1 0" rotation="0 0 0"> </a-entity>
-            <a-box color="white" position="0 -3.2 0" rotation="0 0 0" depth="1" height="1" width="10"></a-box>
+        <a-entity hide-on-hit-test-start shadow id="my-objects" scale="1 1 1" position="0 0 0">
+            <a-entity position="0 3 -15">
+                <!-- <a-entity id="text-block" gltf-model="#text" scale="0.5 0.5 0.5"  position="0 3 -10" rotation="0 0 0"> </a-entity> -->
+                <a-entity id="gltf-inline" gltf-model="url(./a100-b-r.glb)" position="0 1 0" rotation="0 0 0">
+                </a-entity>
+                <a-box color="white" position="0 -3.2 0" rotation="0 0 0" depth="1" height="1" width="10"></a-box>
+            </a-entity>
         </a-entity>
 
 
@@ -166,7 +161,6 @@
                 document.getElementById('chairModel').setAttribute('position', position);
             }
         </script>
-        <!-- <div id="dom-overlay-message">Enter AR to start.</div> -->
     </div>
 </body>
 
