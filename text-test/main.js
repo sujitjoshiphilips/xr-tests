@@ -8,6 +8,13 @@ let sz = 0.083;
 
 window.onload = function onloadFunction() {
     console.log("onload" + currentAlpha);
+    updatePos();
+}
+
+function updatePos() {
+    let pos = document.getElementById('my-objects').getAttribute('position');
+    document.getElementById('position').innerHTML = pos.x + "," + pos.y + "," + pos.z;
+    console.log(pos);
 }
 
 
@@ -26,6 +33,7 @@ function redAlpha() {
     let srcLink = './a' + currentAlpha + '-' + currentHeading + '-' + currentBody + '.glb';
     document.getElementById(modelID).setAttribute('gltf-model', srcLink);
     console.log(currentAlpha + '-' + currentHeading + '-' + currentBody);
+    updatePos()
 }
 
 // gltf-model="url(./a100-b-r.glb)"
@@ -42,6 +50,7 @@ function incAlpha() {
     let srcLink = './a' + currentAlpha + '-' + currentHeading + '-' + currentBody + '.glb';
     document.getElementById(modelID).setAttribute('gltf-model', srcLink);
     console.log(currentAlpha + '-' + currentHeading + '-' + currentBody);
+    updatePos()
 }
 
 function incHead() {
@@ -60,6 +69,7 @@ function incHead() {
     let srcLink = './a' + currentAlpha + '-' + currentHeading + '-' + currentBody + '.glb';
     document.getElementById(modelID).setAttribute('gltf-model', srcLink);
     console.log(currentAlpha + '-' + currentHeading + '-' + currentBody);
+    updatePos();
 }
 
 function redHead() {
@@ -77,6 +87,7 @@ function redHead() {
     let srcLink = './a' + currentAlpha + '-' + currentHeading + '-' + currentBody + '.glb';
     document.getElementById(modelID).setAttribute('gltf-model', srcLink);
     console.log(currentAlpha + '-' + currentHeading + '-' + currentBody);
+    updatePos();
 }
 
 
@@ -95,6 +106,7 @@ function incBod() {
     let srcLink = './a' + currentAlpha + '-' + currentHeading + '-' + currentBody + '.glb';
     document.getElementById(modelID).setAttribute('gltf-model', srcLink);
     console.log(currentAlpha + '-' + currentHeading + '-' + currentBody);
+    updatePos();
 }
 
 function redBod() {
@@ -112,6 +124,7 @@ function redBod() {
     let srcLink = './a' + currentAlpha + '-' + currentHeading + '-' + currentBody + '.glb';
     document.getElementById(modelID).setAttribute('gltf-model', srcLink);
     console.log(currentAlpha + '-' + currentHeading + '-' + currentBody);
+    updatePos();
 }
 
 function incScale() {
@@ -121,6 +134,7 @@ function incScale() {
 
     let scale = String(sx) + " " + String(sz) + " " + String(sy);
     document.getElementById('targetEntity').setAttribute('scale', scale);
+    updatePos();
 }
 
 function redScale() {
@@ -132,4 +146,5 @@ function redScale() {
 
     let scale = String(sx) + " " + String(sz) + " " + String(sy);
     document.getElementById('targetEntity').setAttribute('scale', scale);
+    updatePos();
 }
