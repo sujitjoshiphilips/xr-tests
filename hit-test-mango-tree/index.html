@@ -59,7 +59,7 @@
         <a-light id="dirlight" auto-shadow-cam intensity="0.01" light="castShadow:true;type:directional"
             position="10 10 -10"></a-light>
         <!-- <a-light hide-on-enter-ar intensity="0.01" light="type:hemisphere;color:yellow;groundColor:blue;" -->
-            <!-- position="10 10 10"></a-light> -->
+        <!-- position="10 10 10"></a-light> -->
 
         <a-entity hide-on-enter-ar environment="lighting:none;shadow:true;"></a-entity>
 
@@ -69,19 +69,19 @@
         <!-- ar-shadow-helper="target:#my-objects;light:#dirlight;" height="200" width="200" position="-0.1 0.5 -2"></a-entity> -->
 
         <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
-        <a-entity  hide-on-hit-test-start shadow id="my-objects" scale="0.1 0.1 0.1" position="0 -8 0">
-            
-                <!-- <a-box height="0.5" width="10" depth="10" color="white"></a-box> -->
-                <!-- <a-entity gltf-model="#trunkTree" scale="0.6 0.6 0.6" position="0 0 0"> -->
-                    <!-- <a-entity gltf-model="#leavesTree" position="0 0 0"> </a-entity> -->
-                    <!-- <a-entity gltf-model="#mangoesTree" position="0 0 0"> </a-entity> -->
-                <!-- </a-entity> -->
+        <a-entity hide-on-hit-test-start shadow id="my-objects" scale="0.1 0.1 0.1" position="0 -8 0">
 
-            <a-entity gltf-model="#text" scale="1 1 1" position="0 0 0"></a-entity>
+            <!-- <a-box height="0.5" width="10" depth="10" color="white"></a-box> -->
+            <a-entity gltf-model="#trunkTree" scale="0.6 0.6 0.6" position="0 0 0">
+                <a-entity gltf-model="#leavesTree" position="0 0 0"> </a-entity>
+                <a-entity gltf-model="#mangoesTree" position="0 0 0"> </a-entity>
+            </a-entity>
+
+            <!-- <a-entity gltf-model="#text" scale="1 1 1" position="0 0 0"></a-entity> -->
         </a-entity>
 
         <!-- <a-entity gltf-model="#text" scale="1 1 1" position="0 0 0"></a-entity> -->
-            
+
     </a-scene>
 
     <div id="dom-overlay">
@@ -91,7 +91,7 @@
         <button onclick="moveUp()">Move Up</button>
         <button onclick="rotateChairLeft()">Rotate tree left🔄</button>
         <button onclick="rotateChairRight()">Rotate tree right🔄</button>
-        
+
         <script>
             let rx = 0;
             let ry = 0;
@@ -106,53 +106,53 @@
             let py = 0;
 
             function rotateChairRight() {
-                rz = rz+30;
-                if (rz>=360) {
-                    rz=0;
+                rz = rz + 30;
+                if (rz >= 360) {
+                    rz = 0;
                 }
                 let rotation = String(rx) + " " + String(rz) + " " + String(ry);
                 document.getElementById('chairModel').setAttribute('rotation', rotation);
             }
 
             function rotateChairLeft() {
-                rz = rz-30;
-                if (rz<=0) {
-                    rz=360;
+                rz = rz - 30;
+                if (rz <= 0) {
+                    rz = 360;
                 }
                 let rotation = String(rx) + " " + String(rz) + " " + String(ry);
                 document.getElementById('chairModel').setAttribute('rotation', rotation);
             }
 
             function scaleUp() {
-                sx = sx*1.2;
-                sy = sy*1.2;
-                sz = sz*1.2;
-                
+                sx = sx * 1.2;
+                sy = sy * 1.2;
+                sz = sz * 1.2;
+
                 let scale = String(sx) + " " + String(sz) + " " + String(sy);
                 document.getElementById('chairModel').setAttribute('scale', scale);
             }
 
             function scaleDown() {
-                sx = sx/1.2;
-                sy = sy/1.2;
-                sz = sz/1.2;
+                sx = sx / 1.2;
+                sy = sy / 1.2;
+                sz = sz / 1.2;
 
-                let a = sx*sy*sz;
+                let a = sx * sy * sz;
 
                 let scale = String(sx) + " " + String(sz) + " " + String(sy);
                 document.getElementById('chairModel').setAttribute('scale', scale);
             }
 
             function moveUp() {
-                pz = pz+2;
-                
+                pz = pz + 2;
+
                 let position = String(px) + " " + String(pz) + " " + String(py);
                 document.getElementById('chairModel').setAttribute('position', position);
             }
 
             function moveDown() {
-                pz = pz-2;
-                
+                pz = pz - 2;
+
                 let position = String(px) + " " + String(pz) + " " + String(py);
                 document.getElementById('chairModel').setAttribute('position', position);
             }
