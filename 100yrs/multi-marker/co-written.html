@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Marker Image Tracking</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@3.3.2/aframe/build/aframe-ar.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <a-scene embedded arjs>
+        <!-- Marker 1 -->
+        <a-marker type="pattern" url="./markers/thangs.fset">
+            <a-box color="turquoise" position="0 0.5 0" depth="1" height="1" width="1"></a-box>
+        </a-marker>
+
+        <!-- Marker 2 -->
+        <a-marker type="pattern" url="./markers/thanga.iset">
+            <a-box color="turquoise" position="0 0.5 0" depth="1" height="1" width="1"></a-box>
+        </a-marker>
+
+        <!-- Marker 3 -->
+        <a-marker type="pattern" url="./markers/thanga.fset3">
+            <a-box color="turquoise" position="0 0.5 0" depth="1" height="1" width="1"></a-box>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+</body>
+</html>
