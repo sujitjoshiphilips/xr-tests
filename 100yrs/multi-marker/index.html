@@ -31,27 +31,12 @@
   </div>
 
   <!-- a-frame scene -->
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;" webxr="optionalFeatures:  hit-test;" ar-hit-test="target:#icos;"
-  >
-    <!-- a-nft is the anchor that defines an Image Tracking entity -->
-    <!-- on 'url' use the path to the Image Descriptors created before. -->
-    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-    <a-nft
-      type="nft"
-      url="https://sujitjoshiphilips.github.io/xr-tests/100yrs/markers/Media"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
-    >
-      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-      <a-box color="orange" depth="40" height="40" width="40" position="0 0 0"></a-box>
-    </a-nft>
-    <!-- static camera that moves according to the device movemenents -->
+  <a-scene webxr="optionalFeatures:hit-test;" ar-hit-test="target:#images;">
+    <a-assets>
+      <a-asset-item id="images" src="sujitjoshi.github.io/xr-tests/100yrs/3dmodels/images.glb"></a-asset-item> 
+    </a-assets>
+
+    <a-entity id="images"></a-entity>
     <a-entity camera></a-entity>
   </a-scene>
 </body>
