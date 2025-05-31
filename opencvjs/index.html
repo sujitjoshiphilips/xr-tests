@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AR Cup Detector</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 0;
+            display: block;
+        }
+        #canvas { display: none; }
+        #ar-canvas { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.18.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+    <script>
+        // Get elements
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+
+        // Set up Three.js scene
+        const arCanvas = document.createElement('canvas');
+        arCanvas.id = 'ar-canvas';
+        document.body.appendChild(arCanvas);
+        const renderer = new THREE.WebGLRenderer({ canvas: arCanvas, alpha: true });
+        const scene = new THREE.Scene();
+        const camera3D = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 100);
+        camera3D.position.z = 2;
+
+        // Add cube
+        const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+        const material = new THREE.MeshNormalMaterial();
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+        cube.visible = false;
+
+        // Lighting
+        const light = new THREE.AmbientLight(0xffffff, 1);
+        scene.add(light);
+
+        // Resize handler
+        function resize() {
+            arCanvas.width = window.innerWidth;
+            arCanvas.height = window.innerHeight;
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera3D.aspect = window.innerWidth / window.innerHeight;
+            camera3D.updateProjectionMatrix();
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Start camera
+        async function startCamera() {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+            video.srcObject = stream;
+            await new Promise(resolve => video.onloadedmetadata = resolve);
+            video.width = video.videoWidth;
+            video.height = video.videoHeight;
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+        }
+
+        // Main AR loop
+        async function main() {
+            await startCamera();
+            const model = await cocoSsd.load();
+            const ctx = canvas.getContext('2d');
+
+            async function detect() {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const predictions = await model.detect(canvas);
+
+                // Find the first cup
+                const cup = predictions.find(p => p.class === 'hand' && p.score > 0.6);
+
+                if (cup) {
+                    // Calculate center of bounding box
+                    const [x, y, w, h] = cup.bbox;
+                    const centerX = x + w / 2;
+                    const centerY = y + h / 2;
+
+                    // Map to normalized device coordinates (-1 to 1)
+                    const ndcX = (centerX / canvas.width) * 2 - 1;
+                    const ndcY = -((centerY / canvas.height) * 2 - 1);
+
+                    // Place cube in 3D scene
+                    cube.position.set(ndcX, ndcY, 0);
+                    cube.scale.set(w / canvas.width, h / canvas.height, w / canvas.width);
+                    cube.visible = true;
+                } else {
+                    cube.visible = false;
+                }
+
+                renderer.render(scene, camera3D);
+                requestAnimationFrame(detect);
+            }
+            detect();
+        }
+
+        main();
+    </script>
+</body>
+</html>
