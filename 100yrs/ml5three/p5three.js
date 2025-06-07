@@ -1,16 +1,16 @@
 function setup() {
-  var c = createCanvas(windowWidth, windowHeight);
-  c.parent('p5Div');
-  fill('rgba(0,0,0,0)');
-  ellipse(100, 100, 50, 50);
-  ellipse(width / 2, height / 2, 80, 80);
+  var c = createCanvas(400, 400);
+}
+
+function draw() {
+  ellipse(200,200,40,40)
 }
 
 var scene = new THREE.Scene();
-var cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+var cam = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 
 var renderer = new THREE.WebGLRenderer({alpha:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(400,400);
 const container = document.getElementById('threejsDiv');
 document.body.appendChild(container);
 container.appendChild(renderer.domElement);
@@ -33,4 +33,4 @@ var render = function() {
   renderer.render(scene, cam);
 };
 
-render();
+// render();
